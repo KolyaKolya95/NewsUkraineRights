@@ -1,0 +1,21 @@
+﻿@using WebApplicationNewsUkraine.Models
+@model IEnumerable<PravdaModel>
+
+ <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+        </tr>
+        @foreach (PravdaModel pravda in Model)
+        {
+            <tr>
+                <td>@pravda.Title</td>
+                <td>@pravda.Date</td>
+                <td>@pravda.Category</td>
+                <td>@pravda.Description</td>
+            </tr>
+        }
+ </table>
+
