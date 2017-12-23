@@ -11,9 +11,7 @@ namespace WebApplicationNewsUkraine.Controllers
 {
     public class HomeController : Controller
     {
-
-        // GET: Home
-        public ActionResult Index()
+        public List<PravdaModel> DowloadXml()
         {
             String URLString = "http://www.pravda.com.ua/rss/view_news/";
 
@@ -24,42 +22,10 @@ namespace WebApplicationNewsUkraine.Controllers
 
             XmlNodeList xnList = doc.SelectNodes("/rss/channel/item");
 
-            Debug.WriteLine(xnList);
             foreach (XmlNode node in xnList)
             {
                 Debug.WriteLine(node["pubDate"].InnerText);
             }
-            
-
-            foreach (XmlNode node in xnList)
-            {
-                pravda.Add(new PravdaModel
-                {
-                    Title = node["title"].InnerText,
-                    Link = node["link"].InnerText,
-                    Category = node["category"].InnerText,
-                    Date  = DateTime.Parse(node["pubDate"].InnerText),
-                    Description = node["description"].InnerText,
-                    Guid = node["guid"].InnerText
-                }
-                );
-            }
-
-            return View(pravda);
-        }
-
-        public ActionResult SortIndex()
-        {
-            String URLString = "http://www.pravda.com.ua/rss/view_news/";
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(URLString);
-
-            List<PravdaModel> pravda = new List<PravdaModel>();
-
-            XmlNodeList xnList = doc.SelectNodes("/rss/channel/item");
-
-            Debug.WriteLine(xnList);
 
             foreach (XmlNode node in xnList)
             {
@@ -74,49 +40,37 @@ namespace WebApplicationNewsUkraine.Controllers
                 }
                 );
             }
+            return pravda;
+        }
 
-            
-            pravda.Sort(delegate(PravdaModel p1, PravdaModel p2)
-                       {
-                         return p1.Title.CompareTo(p2.Title);
-                       });
+        // GET: Home
+        public ActionResult Index()
+        {
+            return View(DowloadXml());
+        }
 
-            return View(pravda);
+        public ActionResult SortTitleIndex()
+        {
+            List<PravdaModel> sortList = new List<PravdaModel>(DowloadXml());
+
+            sortList.Sort(delegate(PravdaModel p1, PravdaModel p2)
+            {
+              return p1.Title.CompareTo(p2.Title);
+            });
+
+            return View("Index", sortList);
         }
 
         public ActionResult SortDataIndex()
         {
-            String URLString = "http://www.pravda.com.ua/rss/view_news/";
+            List<PravdaModel> sortList = new List<PravdaModel>(DowloadXml());
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(URLString);
-
-            List<PravdaModel> pravda = new List<PravdaModel>();
-
-            XmlNodeList xnList = doc.SelectNodes("/rss/channel/item");
-
-            Debug.WriteLine(xnList);
-
-            foreach (XmlNode node in xnList)
-            {
-                pravda.Add(new PravdaModel
-                {
-                    Title = node["title"].InnerText,
-                    Link = node["link"].InnerText,
-                    Category = node["category"].InnerText,
-                    Date = DateTime.Parse(node["pubDate"].InnerText),
-                    Description = node["description"].InnerText,
-                    Guid = node["guid"].InnerText
-                }
-                );
-            }
-
-            pravda.Sort(delegate (PravdaModel p1, PravdaModel p2)
+            sortList.Sort(delegate (PravdaModel p1, PravdaModel p2)
             {
                 return p1.Date.CompareTo(p2.Date);
             });
 
-            return View(pravda);
+            return View("Index", sortList);
         }
     }
 }

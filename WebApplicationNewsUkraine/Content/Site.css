@@ -16,12 +16,9 @@ textarea {
     max-width: 280px;
 }
 
-.HomeDiv {
-    margin: auto;
-    height: 600px;
-    width: 800px;
-    padding: 00px;
-    /*border-style: solid;
-    border-color: #808080;*/
+.ButtonNav {
+    height: 100px;
 }
+
+
 

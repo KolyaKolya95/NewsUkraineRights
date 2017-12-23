@@ -4,27 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Pravda news </title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-   
-    <div class="NavigationDiv">
-        <input class="btn btn-sm btn-primary" value="Sort Name" onclick="location.href='@Url.Action("SortIndex", "Home")'" />
-        <input class="btn btn-sm btn-primary" value="Sort Date" onclick="location.href='@Url.Action("", "")'" />
+    <div class="labelNav text-center" style="height:70px;">
+        <label id="labelNav"> УКРАЇНСЬКА ПРАВДА</label></br>
+        <label>Новини</label>
     </div>
 
-    <div class="HomeDiv">
-        <div class="ContetGadget">    
-            @RenderBody()
-        </div>
+    <div style="text-align:center; height:40px;">
+        <input class="btn btn-sm btn-primary" value="Sort Name" onclick="location.href='@Url.Action("SortTitleIndex", "Home")'" />
+        <input class="btn btn-sm btn-primary" value="Sort Date" onclick="location.href='@Url.Action("SortDataIndex", "Home")'" />
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <div>
+            @RenderBody();
+    </div>
+
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
