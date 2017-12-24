@@ -8,20 +8,18 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="labelNav text-center" style="height:70px;">
-        <label id="labelNav"> УКРАЇНСЬКА ПРАВДА</label></br>
-        <label>Новини</label>
+    <div class="text-center TitleLabel">
+        <h1>УКРАЇНСЬКА ПРАВДА</h1>
+        <label id="aLable" style="font-size:22px;">Новини</label>
     </div>
 
-    <div style="text-align:center; height:40px;">
-        <input class="btn btn-sm btn-primary" value="Sort Name" onclick="location.href='@Url.Action("SortTitleIndex", "Home")'" />
-        <input class="btn btn-sm btn-primary" value="Sort Date" onclick="location.href='@Url.Action("SortDataIndex", "Home")'" />
+    <div class="text-center NavButton" style="margin:1%">
+        <input class="btn btn-sm btn-primary" value="Сортувати за заголовком" onclick="location.href='@Url.Action("SortTitleIndex", "Home")'" />
+        <input class="btn btn-sm btn-primary" value="Сортувати за датою" onclick="location.href='@Url.Action("SortDataIndex", "Home")'" />
     </div>
 
     <div>
             @RenderBody();
     </div>
-
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

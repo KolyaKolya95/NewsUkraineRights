@@ -3,16 +3,16 @@
 
 <table class="table table table-striped">
         <tr>
-            <th>Date</th>
-            <th>News</th>
+            <th>Дата:</th>
+            <th>Новини:</th>
         </tr>
         @foreach (PravdaModel pravda in Model)
         {
             <tr>
                 <td>@pravda.Date</td>
                 <td>
-                    @pravda.Title
-                    @pravda.Description
+                    <label>@pravda.Title</label> 
+                    <br>@pravda.Description
                 </td>
             </tr>
         }

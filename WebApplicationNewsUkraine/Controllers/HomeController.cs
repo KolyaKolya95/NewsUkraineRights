@@ -11,7 +11,7 @@ namespace WebApplicationNewsUkraine.Controllers
 {
     public class HomeController : Controller
     {
-        public List<PravdaModel> DowloadXml()
+        public List<PravdaModel> DowloadXmlNews()
         {
             String URLString = "http://www.pravda.com.ua/rss/view_news/";
 
@@ -46,12 +46,12 @@ namespace WebApplicationNewsUkraine.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(DowloadXml());
+            return View(DowloadXmlNews());
         }
 
         public ActionResult SortTitleIndex()
         {
-            List<PravdaModel> sortList = new List<PravdaModel>(DowloadXml());
+            List<PravdaModel> sortList = DowloadXmlNews();
 
             sortList.Sort(delegate(PravdaModel p1, PravdaModel p2)
             {
@@ -63,7 +63,7 @@ namespace WebApplicationNewsUkraine.Controllers
 
         public ActionResult SortDataIndex()
         {
-            List<PravdaModel> sortList = new List<PravdaModel>(DowloadXml());
+            List<PravdaModel> sortList = DowloadXmlNews();
 
             sortList.Sort(delegate (PravdaModel p1, PravdaModel p2)
             {
